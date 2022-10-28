@@ -52,9 +52,10 @@ public class Ejercicio3EAlexey {
                                                 """);
 
                         resultAsk = ask.toUpperCase();
+
                         if (!resultAsk.equals("SALIR")) {
                             answer = Double.parseDouble(ask);
-                            if ((answer > 5 || answer < 1)) {
+                            if ((answer > 5.0 || answer < 1.0)) {
                                 confirm = false;
                                 JOptionPane.showInternalMessageDialog(null, "No Hay este codigo");
                             } else {
@@ -62,11 +63,11 @@ public class Ejercicio3EAlexey {
                             }
                         } else if (resultAsk.equals("SALIR")) {
                             confirmMenu2 = false;
+                            confirm = true;
                         }
-                        System.out.println(confirmMenu2);
-                    } while ((confirm != true) || (confirmMenu2 == true));
+                    } while (confirm != true);
 
-                    if (confirmMenu2 != false) {
+                    if (confirmMenu2 == true) {
 
                         int codigo = (int) answer;//codigo de producto
 
@@ -101,9 +102,9 @@ public class Ejercicio3EAlexey {
                             if (answer > 0.9 || answer < 0.5) {
                                 confirm = false;
                                 JOptionPane.showInternalMessageDialog(null, """
-                                                            --------------------------------------------
+                                                            -------------------------------------------------
                                                                Escribe precio en rango entre 0.5 hasta 0.9
-                                                            --------------------------------------------
+                                                            -------------------------------------------------
                                                             """);
                             } else {
                                 confirm = true;
@@ -133,10 +134,13 @@ public class Ejercicio3EAlexey {
                                       """, costeDeProducion, precioDeVenta, numeroDeUnidades);
                         JOptionPane.showMessageDialog(null, result);
 
+                    } else{
+                        confirmMenu = true;
                     }
                 }
+
             }
-            confirmMenu = true;
+
         } while (confirmMenu != true);
         JOptionPane.showMessageDialog(null, "Saliendo...");
     }
