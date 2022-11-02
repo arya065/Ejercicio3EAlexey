@@ -33,9 +33,9 @@ public class Ejercicio3EAlexey {
             boolean confirmMenu1 = resultAsk.equals("HACER CALCULOS") || resultAsk.equals("SALIR");
             confirmMenu = resultAsk.equals("SALIR");
 
-            if (confirmMenu1 != false) {
+            if (confirmMenu1 == true) {
 
-                if (confirmMenu != true) {
+                if (confirmMenu == false) {
 
                     do {
                         confirm = true;
@@ -54,6 +54,7 @@ public class Ejercicio3EAlexey {
                         resultAsk = ask.toUpperCase();
 
                         if (!resultAsk.equals("SALIR")) {
+                            
                             answer = Double.parseDouble(ask);
                             if ((answer > 5.0 || answer < 1.0)) {
                                 confirm = false;
@@ -61,10 +62,12 @@ public class Ejercicio3EAlexey {
                             } else {
                                 confirm = true;
                             }
+                            
                         } else if (resultAsk.equals("SALIR")) {
                             confirmMenu2 = false;
                             confirm = true;
                         }
+                        
                     } while (confirm != true);
 
                     if (confirmMenu2 == true) {
@@ -141,7 +144,7 @@ public class Ejercicio3EAlexey {
                 
             }
 
-        } while (confirmMenu != true);
+        } while (confirmMenu == false);
         JOptionPane.showMessageDialog(null, "Saliendo...");
     }
 }
