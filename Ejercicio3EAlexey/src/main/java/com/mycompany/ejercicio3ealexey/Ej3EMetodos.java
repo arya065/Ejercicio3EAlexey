@@ -7,9 +7,9 @@ public class Ej3EMetodos {
 
     public static void main(String[] args) {
 
-        boolean asking = mostrarMenuPrincipal();
-
-        System.out.println(asking);
+        boolean confirmMenu = mostrarMenuPrincipal();
+        
+        System.out.println(confirmMenu);
     }
 
     public static boolean mostrarMenuPrincipal() {
@@ -56,7 +56,8 @@ public class Ej3EMetodos {
             
         }
      */
- /*////////////////////////////////////////////////////////////
+ /*
+    ////////////////////////////////////////////////////////////
         float manoDeObra;
         float percPrecioDeVenta_M1_M2_P1 = 1.5f;//50%
         float percPrecioDeVenta_T1_T2 = 1.65f;//65%
@@ -73,14 +74,14 @@ public class Ej3EMetodos {
         do {
             //Menu Principal
             String ask = JOptionPane.showInputDialog("""
-                                                ----------------------------------------
+                                             asking   ----------------------------------------
                                                         Elige que quieres hacer
                                                 Hacer calculos
                                                 Salir
                                                 ----------------------------------------
                                                 """);
             String resultAsk = ask.toUpperCase();
-            boolean confirmMenu1 = resultAsk.equals("HACER CALCULOS") || resultAsk.equals("SALIR");
+            boolean confirmMenu1 = resultAsk.askingjjhequals("HACER CALCULOS") || resultAsk.equals("SALIR");
             confirmMenu = resultAsk.equals("SALIR");
 
             if (confirmMenu1 != false) {
@@ -192,7 +193,6 @@ public class Ej3EMetodos {
             }
 
         } while (confirmMenu != true);
-        JOptionPane.showMessageDialog(null, "Saliendo...");*/
+        JOptionPane.showMessageDialog(null, "Saliendo...");
+     */
 }
-
-
