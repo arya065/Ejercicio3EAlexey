@@ -3,10 +3,60 @@ package com.mycompany.ejercicio3ealexey;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-public class Ejercicio3EAlexey {
+public class Ej3EMetodos {
 
     public static void main(String[] args) {
 
+        boolean asking = mostrarMenuPrincipal();
+
+        System.out.println(asking);
+    }
+
+    public static boolean mostrarMenuPrincipal() {
+        String ask = JOptionPane.showInputDialog("""
+                                                ----------------------------------------
+                                                        Elige que quieres hacer
+                                                Hacer calculos
+                                                Salir
+                                                ----------------------------------------
+                                                """);
+        String resultAsk = ask.toUpperCase();
+        boolean confirmMenu1 = resultAsk.equals("HACER CALCULOS") || resultAsk.equals("SALIR");
+        boolean confirmMenu = resultAsk.equals("SALIR");
+        return confirmMenu;
+    }
+
+    /*public static String leerCodigos(){
+                return;
+            }
+            public static String filtrarCodigos(){
+                return;
+            }
+            public static String leerMateriaPrima(){
+                return;
+            }
+            public static String filtrarMateriaPrima(){
+                return;
+            }
+            public static String leeManoObra(){
+                return;
+            }
+            public static String filtraManoObra(){
+                return;
+            }
+            public static String calcularCosteProduc(){
+                return;
+            }
+            public static String calcularPrecioVentaUnidad(){
+                return;
+            }
+            public static String calcularUnidades(){
+                return;
+            }
+            
+        }
+     */
+ /*////////////////////////////////////////////////////////////
         float manoDeObra;
         float percPrecioDeVenta_M1_M2_P1 = 1.5f;//50%
         float percPrecioDeVenta_T1_T2 = 1.65f;//65%
@@ -142,6 +192,7 @@ public class Ejercicio3EAlexey {
             }
 
         } while (confirmMenu != true);
-        JOptionPane.showMessageDialog(null, "Saliendo...");
-    }
+        JOptionPane.showMessageDialog(null, "Saliendo...");*/
 }
+
+
