@@ -5,28 +5,18 @@ import javax.swing.JOptionPane;
 
 public class Ej3EMetodos {
 
-
     public static void main(String[] args) {
         String resultAsk;
-        double ask=0;
+        float ask = 0;
         boolean confirmMenu;
-        boolean confirm = true;
-        int filter;
+        int filter, codigo;
         // filter=0 --- Error
         // filter=1 --- OK
         // filter=2 --- SALIR
-
-        
+        float costeDeProducion, precioDeVenta;
+        int numeroDeUnidades;
         float manoDeObra;
-        float percPrecioDeVenta_M1_M2_P1 = 1.5f;//50%
-        float percPrecioDeVenta_T1_T2 = 1.65f;//65%
-        String M1;//Mantecados de Limón
-        String M2;//Mazapanes
-        String P1;//Polvorones  
-        String T1;//Turrón de chocolate
-        String T2;//Turrón clásico
-
-        boolean confirmMenu2 = true;
+        float precioMateriaPrima;
 
         programm:
         do {
@@ -39,34 +29,38 @@ public class Ej3EMetodos {
             } else if (confirmMenu == true) {
                 break;
             } else {
-
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hello there
                 do {
                     resultAsk = leerCodigos();
-                    filter= filtrarCodigos();
+                    filter = filtrarCodigos(resultAsk);
                 } while (filter == 0);
-                
-                if(filter==1){
-                    do{
-                        ask=leerMateriaPrima();   
-                        filter= filtrarMateriaPrima();
-                    } while(filter==0);
-                    
-                }else{
+
+                if (filter == 1) {
+                    codigo = Integer.parseInt(resultAsk);
+                    do {
+                        ask = (float) leerMateriaPrima();
+                        filter = filtrarMateriaPrima(ask);
+                    } while (filter == 0);
+                    precioMateriaPrima = ask;
+                    do {
+                        ask = (float) leeManoObra();
+                        filter = filtrarManoObra(ask);
+                    } while (filter == 0);
+                    manoDeObra = ask;
+                    //расчёт стоимости
+                    costeDeProducion = (float) calcularCosteProducion(codigo, manoDeObra, precioMateriaPrima);
+                    precioDeVenta = calcularPrecioVentaUnidad(codigo, costeDeProducion);
+                    numeroDeUnidades = calcularUnidades(precioDeVenta);
+                    String result = String.format("""
+                                      Coste de produccion unitario es %f€
+                                      Precio de venta unitario es %.3f€
+                                      El número de unidades a producir es %d
+                                      """, costeDeProducion, precioDeVenta, numeroDeUnidades);
+                    JOptionPane.showMessageDialog(null, result);
+                } else if (filter == 2) {
                     break programm;
                 }
 
-                /*int codigo = (int) answer;
-                
-                do {
-                    answer= filtrarCodigos();
-                    if (answer > 1 || answer < 0.1) {
-                                confirm = false;
-                                JOptionPane.showInternalMessageDialog(null, "Escribe precio en rango entre 0.1 hasta 1");
-                            } else {
-                                break;
-                            }
-                } while(confirm==false);*/
-                
             }
         } while (confirmMenu == false);
         System.out.println("Saliendo...");
@@ -98,199 +92,106 @@ public class Ej3EMetodos {
                                                 --------------------------------------------
                                                 """);
 
-        String leercodigos = ask.toUpperCase();
-        return leercodigos;
+        String resultAsk = ask.toUpperCase();
+        return resultAsk;
     }
 
-    public static int filtrarCodigos() {
+    public static int filtrarCodigos(String resultAsk) {
         double answer;
-        int filter=0;
-        String resultAsk= leerCodigos();
+        int filter = 0;
         if (!resultAsk.equals("SALIR")) {
 
-                        answer = Double.parseDouble(resultAsk);
-                        if ((answer > 5.0 || answer < 1.0)) {
-                            filter = 0;
-                            JOptionPane.showInternalMessageDialog(null, "No Hay este codigo");
-                        } else {
-                            filter = 1;
-                        }
-                    } else if (resultAsk.equals("SALIR")) {
-                        filter=2;
-                    }
+            answer = Double.parseDouble(resultAsk);
+            if ((answer > 5.0 || answer < 1.0)) {
+                filter = 0;
+                JOptionPane.showInternalMessageDialog(null, "No Hay este codigo");
+            } else {
+                filter = 1;
+            }
+        } else if (resultAsk.equals("SALIR")) {
+            filter = 2;
+        }
         return filter;
     }
 
     public static double leerMateriaPrima() {
-    String ask = JOptionPane.showInputDialog("""
-                                                --------------------------------------------
+        String ask = JOptionPane.showInputDialog("""
+                                ------------------------------------------------
                                                      
-                                                        Escribe Precio de materia prima
+                                Escribe Precio de materia prima
                                                
-                                                --------------------------------------------
+                                ------------------------------------------------
                                                 """);
         Double resultAsk = Double.parseDouble(ask);
         return resultAsk;
-        
+
     }
 
-    public static int filtrarMateriaPrima() {
-        int filter=0;
-        double answer=leerMateriaPrima();
+    public static int filtrarMateriaPrima(double answer) {
+        int filter = 0;
+        //double answer = leerMateriaPrima();//надо перенести ответ из предыдущего метода без его вызова,чтобы не было повтора 
         if (answer > 1 || answer < 0.1) {
-                                filter=0;
-                                JOptionPane.showInternalMessageDialog(null, "Escribe precio en rango entre 0.1 hasta 1");
-                            } else {
-                                filter=1;
-                            }
+            filter = 0;
+            JOptionPane.showInternalMessageDialog(null, "Escribe precio en rango entre 0.1 hasta 1");
+        } else {
+            filter = 1;
+        }
         return filter;
     }
 
-    /*public static String leeManoObra() {
-        return;
-    }
-
-    public static String filtraManoObra() {
-        return;
-    }
-
-    public static String calcularCosteProducion() {
-        return;
-    }
-
-    public static String calcularPrecioVentaUnidad() {
-        return;
-    }
-
-    public static String calcularUnidades() {
-        return;
-    }
-
-}
-
-////////////////////////////////////////////////////////////
-do {
-            //Menu Principal
-            String ask = JOptionPane.showInputDialog("""
-                                             asking   ----------------------------------------
-                                                        Elige que quieres hacer
-                                                Hacer calculos
-                                                Salir
-                                                ----------------------------------------
-                                                """);
-            String resultAsk = ask.toUpperCase();
-            boolean confirmMenu1 = resultAsk.equals("HACER CALCULOS") || resultAsk.equals("SALIR");
-            confirmMenu = resultAsk.equals("SALIR");
-//////////
-            if (confirmMenu1 == true) {
-
-                if (confirmMenu == false) {
-
-                    do {
-                        confirm = true;
-                        ask = JOptionPane.showInputDialog("""
-                                                --------------------------------------------
-                                                        Solicita codigo de producto
-                                                1- Mantecados de Limón
-                                                2- Mazapanes
-                                                3- Polvorones
-                                                4- Turrón de chocolate
-                                                5- Turrón clásico
-                                                Salir
-                                                --------------------------------------------
-                                                """);
-
-                        resultAsk = ask.toUpperCase();
-////////////
-                        if (!resultAsk.equals("SALIR")) {
-                            answer = Double.parseDouble(ask);
-                            if ((answer > 5.0 || answer < 1.0)) {
-                                confirm = false;
-                                JOptionPane.showInternalMessageDialog(null, "No Hay este codigo");
-                            } else {
-                                confirm = true;
-                            }
-                        } else if (resultAsk.equals("SALIR")) {
-                            confirmMenu2 = false;
-                            confirm = true;
-                        }
-                    } while (confirm == false);
-////////////
-                    if (confirmMenu2 == true) {
-
-                        int codigo = (int) answer;//codigo de producto
-
-                        do {
-                            confirm = true;
-                            ask = JOptionPane.showInputDialog("""
-                                                --------------------------------------------
+    public static double leeManoObra() {
+        String ask = JOptionPane.showInputDialog("""
+                                ------------------------------------------------
                                                      
-                                                        Escribe Precio de materia prima
+                                Escribe precio de mano de obra      
                                                
-                                                --------------------------------------------
+                                ------------------------------------------------
                                                 """);
-                            answer = Double.parseDouble(ask);
-                            if (answer > 1 || answer < 0.1) {
-                                confirm = false;
-                                JOptionPane.showInternalMessageDialog(null, "Escribe precio en rango entre 0.1 hasta 1");
-                            } else {
-                                confirm = true;
-                            }
-                        } while (confirm != true);
-                        double precioMateriPrima = answer;//precio materia prima
+        Double resultAsk = Double.parseDouble(ask);
+        return resultAsk;
+    }
 
-                        do {
-                            ask = JOptionPane.showInputDialog("""
-                                                --------------------------------------------
-                                                     
-                                                        Escribe precio de mano de obra      
-                                               
-                                                --------------------------------------------
-                                                """);
-                            answer = Double.parseDouble(ask);
-                            if (answer > 0.9 || answer < 0.5) {
-                                confirm = false;
-                                JOptionPane.showInternalMessageDialog(null, """
+    public static int filtrarManoObra(double answer) {
+        int filter;
+        //double answer = leeManoObra();//надо перенести ответ из предыдущего метода без его вызова,чтобы не было повтора 
+        if (answer > 0.9 || answer < 0.5) {
+            filter = 0;
+            JOptionPane.showInternalMessageDialog(null, """
                                                             -------------------------------------------------
                                                                Escribe precio en rango entre 0.5 hasta 0.9
                                                             -------------------------------------------------
                                                             """);
-                            } else {
-                                confirm = true;
-                            }
-                        } while (confirm != true);
-                        manoDeObra = (float) answer;
+        } else {
+            filter = 1;
+        }
+        return filter;
+    }
 
-                        float costeDeProducion;// coste de producion
-                        if (codigo == 1 && codigo == 4) {
-                            costeDeProducion = manoDeObra * (float) precioMateriPrima;
-                        } else {
-                            costeDeProducion = manoDeObra * (float) precioMateriPrima;
-                        }
+    public static double calcularCosteProducion(int codigo, float manoDeObra, float precioMateriPrima) {
+        float costeDeProducion;// coste de producion
+        if (codigo == 1 && codigo == 4) {
+            costeDeProducion = manoDeObra * (float) precioMateriPrima;
+        } else {
+            costeDeProducion = manoDeObra * (float) precioMateriPrima;
+        }
+        return costeDeProducion;
+    }
 
-                        float precioDeVenta;//precio de venta
-                        if (codigo == 4 && codigo == 5) {
-                            precioDeVenta = costeDeProducion * percPrecioDeVenta_T1_T2;
-                        } else {
-                            precioDeVenta = costeDeProducion * percPrecioDeVenta_M1_M2_P1;
-                        }
+    public static float calcularPrecioVentaUnidad(int codigo, double costeDeProducion) {
+        float precioDeVenta;
+        float percPrecioDeVenta_M1_M2_P1 = 1.5f;//50%
+        float percPrecioDeVenta_T1_T2 = 1.65f;//65%
 
-                        int numeroDeUnidades = (int) Math.ceil(2500 / precioDeVenta);
-                        String result = String.format("""
-                                      Coste de produccion unitario es %f€
-                                      Precio de venta unitario es %.3f€
-                                      El número de unidades a producir es %d
-                                      """, costeDeProducion, precioDeVenta, numeroDeUnidades);
-                        JOptionPane.showMessageDialog(null, result);
+        if (codigo == 4 && codigo == 5) {
+            precioDeVenta = (float) (costeDeProducion * percPrecioDeVenta_T1_T2);
+        } else {
+            precioDeVenta = (float) (costeDeProducion * percPrecioDeVenta_M1_M2_P1);
+        }
+        return precioDeVenta;
+    }
 
-                    } else{
-                        confirmMenu = true;
-                    }
-                }
-                
-            }
-
-        } while (confirmMenu != true);
-        JOptionPane.showMessageDialog(null, "Saliendo...");
-     */
+    public static int calcularUnidades(float precioDeVenta) {
+        int numeroDeUnidades = (int) Math.ceil(2500 / precioDeVenta);
+        return numeroDeUnidades;
+    }
 }
