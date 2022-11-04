@@ -62,7 +62,7 @@ public class Ej3EMetodos {
                 }
 
             }
-        } while (confirmMenu == false);
+        } while (!confirmMenu);
         System.out.println("Saliendo...");
     }
 
@@ -101,7 +101,7 @@ public class Ej3EMetodos {
         int filter = 0;
         if (!resultAsk.equals("SALIR")) {
 
-            answer = Double.parseDouble(resultAsk);
+            answer = Double.parseDouble(resultAsk);////////////////////////////////////////////////////////////////////try-catch-finally
             if ((answer > 5.0 || answer < 1.0)) {
                 filter = 0;
                 JOptionPane.showInternalMessageDialog(null, "No Hay este codigo");
@@ -122,7 +122,7 @@ public class Ej3EMetodos {
                                                
                                 ------------------------------------------------
                                                 """);
-        Double resultAsk = Double.parseDouble(ask);
+        Double resultAsk = Double.parseDouble(ask);//////////////////////////////////////////////////////////try-catch-finally
         return resultAsk;
 
     }
@@ -147,7 +147,7 @@ public class Ej3EMetodos {
                                                
                                 ------------------------------------------------
                                                 """);
-        Double resultAsk = Double.parseDouble(ask);
+        Double resultAsk = Double.parseDouble(ask);////////////////////////////////////////////////////try-catch-finally
         return resultAsk;
     }
 
