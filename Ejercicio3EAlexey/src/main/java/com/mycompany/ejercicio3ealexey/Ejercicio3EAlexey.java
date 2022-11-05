@@ -38,7 +38,7 @@ public class Ejercicio3EAlexey {
                 if (confirmMenu == false) {
 
                     do {
-                        confirm = true;
+                        
                         ask = JOptionPane.showInputDialog("""
                                                 --------------------------------------------
                                                         Solicita codigo de producto
@@ -68,7 +68,7 @@ public class Ejercicio3EAlexey {
                             confirm = true;
                         }
                         
-                    } while (confirm != true);
+                    } while (!confirm);
 
                     if (confirmMenu2 == true) {
 

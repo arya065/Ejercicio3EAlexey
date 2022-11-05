@@ -129,7 +129,6 @@ public class Ej3EMetodos {
 
     public static int filtrarMateriaPrima(double answer) {
         int filter = 0;
-        //double answer = leerMateriaPrima();//надо перенести ответ из предыдущего метода без его вызова,чтобы не было повтора 
         if (answer > 1 || answer < 0.1) {
             filter = 0;
             JOptionPane.showInternalMessageDialog(null, "Escribe precio en rango entre 0.1 hasta 1");
@@ -152,8 +151,7 @@ public class Ej3EMetodos {
     }
 
     public static int filtrarManoObra(double answer) {
-        int filter;
-        //double answer = leeManoObra();//надо перенести ответ из предыдущего метода без его вызова,чтобы не было повтора 
+        int filter; 
         if (answer > 0.9 || answer < 0.5) {
             filter = 0;
             JOptionPane.showInternalMessageDialog(null, """
