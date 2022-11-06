@@ -1,6 +1,7 @@
 package com.mycompany.ejercicio3ealexey;
 
 import java.util.*;
+import java.lang.*;
 import javax.swing.JOptionPane;
 
 public class Ej3EMetodos {
@@ -97,12 +98,16 @@ public class Ej3EMetodos {
     }
 
     public static int filtrarCodigos(String resultAsk) {
-        double answer;
+        int answer = 0;
         int filter = 0;
         if (!resultAsk.equals("SALIR")) {
 
-            answer = Double.parseDouble(resultAsk);////////////////////////////////////////////////////////////////////try-catch-finally
-            if ((answer > 5.0 || answer < 1.0)) {
+            try {
+                answer = Integer.parseInt(resultAsk);////////////////////////////////////////////////////////////////////try-catch-finally
+            } catch (NumberFormatException name) {
+                System.out.println("No hay este codigo");
+            }
+            if ((answer > 5 || answer < 1)) {
                 filter = 0;
                 JOptionPane.showInternalMessageDialog(null, "No Hay este codigo");
             } else {
@@ -115,6 +120,7 @@ public class Ej3EMetodos {
     }
 
     public static double leerMateriaPrima() {
+        Double resultAsk;
         String ask = JOptionPane.showInputDialog("""
                                 ------------------------------------------------
                                                      
@@ -122,7 +128,12 @@ public class Ej3EMetodos {
                                                
                                 ------------------------------------------------
                                                 """);
-        Double resultAsk = Double.parseDouble(ask);//////////////////////////////////////////////////////////try-catch-finally
+        try {
+            resultAsk = Double.parseDouble(ask);//////////////////////////////////////////////////////////try-catch-finally
+        } catch (NumberFormatException e) {
+            resultAsk = 0.0;
+        }
+
         return resultAsk;
 
     }
@@ -139,6 +150,7 @@ public class Ej3EMetodos {
     }
 
     public static double leeManoObra() {
+        Double resultAsk;
         String ask = JOptionPane.showInputDialog("""
                                 ------------------------------------------------
                                                      
@@ -146,12 +158,16 @@ public class Ej3EMetodos {
                                                
                                 ------------------------------------------------
                                                 """);
-        Double resultAsk = Double.parseDouble(ask);////////////////////////////////////////////////////try-catch-finally
+        try {
+            resultAsk = Double.parseDouble(ask);////////////////////////////////////////////////////try-catch-finally
+        } catch (NumberFormatException e) {
+            resultAsk = 0.0;
+        }
         return resultAsk;
     }
 
     public static int filtrarManoObra(double answer) {
-        int filter; 
+        int filter;
         if (answer > 0.9 || answer < 0.5) {
             filter = 0;
             JOptionPane.showInternalMessageDialog(null, """
